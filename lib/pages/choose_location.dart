@@ -10,10 +10,15 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   int counter = 0;
 
+  void getData() async {
+    //    simulate network request for a username
+    await Future.delayed(const Duration(seconds: 3), () => {debugPrint('yoshi')});
+  }
+
   @override
   void initState() {
-      super.initState();
-      debugPrint('init state function ran');
+    super.initState();
+    getData();
   }
 
   @override
@@ -28,7 +33,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
         elevation: 0,
       ),
       body: ElevatedButton(
-        onPressed: (){
+        onPressed: () {
           setState(() {
             counter += 1;
           });
