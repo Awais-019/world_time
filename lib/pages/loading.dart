@@ -10,16 +10,23 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  void getData() async {
-    Response response = await get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
+  void getTime() async {
+    Response response = await get(Uri.parse('http://worldtimeapi.org/api/timezone/Asia/Karachi'));
     Map data = jsonDecode(response.body);
-    debugPrint(data['title']);
+
+    String dateTime = data['datetime'];
+    String offset = data['utc_offset'].substring(0, 3);
+
+    DateTime now = DateTime.parse(dateTime);
+    now = now.add(Duration(hours: int.parse(offset)));
+
+    debugPrint(now.toString());
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
 
   @override
